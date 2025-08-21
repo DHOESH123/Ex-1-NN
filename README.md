@@ -37,11 +37,42 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```py
+import pandas as pd
+df1=pd.read_csv('/content/Churn_Modelling (3).csv')
+df1
+df1.head()
+df1.tail()
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+scaler=StandardScaler()
+numerical_cols1=['RowNumber', 'CustomerId', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts', 'HasCrCard',
+       'IsActiveMember', 'EstimatedSalary']
+df1[numerical_cols1]=scaler.fit_transform(df[numerical_cols1])
+df1
+from sklearn.preprocessing import LabelEncoder
+df1.drop('Surname',inplace=True,axis=1)
+le=LabelEncoder()
+df1['Geography']=le.fit_transform(df1['Geography'])
+df1['Gender']=le.fit_transform(df1['Gender'])
+df1
+x=df1.drop('Exited',axis=1)
+y=df1['Exited']
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
+print(x_train)
+print(x_test)
+
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+<img width="1446" height="615" alt="image" src="https://github.com/user-attachments/assets/656290f4-cff8-465d-9623-1502599c52b7" />
+<img width="1403" height="330" alt="image" src="https://github.com/user-attachments/assets/8cee1d5d-9e41-46a1-bbeb-2c227a2e8fcf" />
+<img width="1390" height="435" alt="image" src="https://github.com/user-attachments/assets/26220df7-19b4-45af-9fad-e01e11be91a2" />
+
+
+
+
 
 
 ## RESULT:
